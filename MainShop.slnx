@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/01-InfraStructure/">
+    <Project Path="MainShop/src/App.Infarstructure.DataBase.SqlServer/App.Infarstructure.DataBase.SqlServer.csproj" />
+  </Folder>
+  <Folder Name="/Src/02-EndPoint/">
+    <Project Path="MainShop/src/App.EndPoin.Mvc.AdminUI/App.EndPoin.Mvc.AdminUI.csproj" />
+    <Project Path="MainShop/src/App.EndPoin.Mvc.ShopUI/App.EndPoin.Mvc.ShopUI.csproj" />
+  </Folder>
+</Solution>
