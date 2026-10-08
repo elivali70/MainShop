@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Infarstructure.DataBase.SqlServer.Entities;
+﻿
+using App.Domain.Core.BaseData.Entities;
+using App.Domain.Core.Product.Entities;
+using App.Domain.Core.Brand.Entities;
 using Microsoft.EntityFrameworkCore;
+using App.Domain.Core.Category.Entities;
 
 namespace App.Infarstructure.DataBase.SqlServer.Data;
 
@@ -10,13 +12,16 @@ public partial class AppDbContext : DbContext
     public AppDbContext()
     {
     }
-
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+    }
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<Barnd> Barnds { get; set; }
+    public virtual DbSet<Brand> Brands { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
 
@@ -56,13 +61,10 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<ViewrUser> ViewrUsers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.;Database=ShopProjectDB;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Barnd>(entity =>
+        modelBuilder.Entity<Brand>(entity =>
         {
             entity.Property(e => e.Name).HasMaxLength(150);
         });
@@ -138,7 +140,9 @@ public partial class AppDbContext : DbContext
         {
             entity.HasIndex(e => e.BrandId, "IX_Models_BrandId");
 
-            entity.HasIndex(e => e.BrandId1, "IX_Models_BrandId1");
+            entity.HasIndex(e => e.ProductId, "IX_Products_ModelId");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.Models).HasForeignKey(d => d.ProductId);
 
             entity.HasIndex(e => e.ParentModelId, "IX_Models_ParentModelId");
 
@@ -148,7 +152,6 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(d => d.BrandId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.BrandId1Navigation).WithMany(p => p.ModelBrandId1Navigations).HasForeignKey(d => d.BrandId1);
 
             entity.HasOne(d => d.ParentModel).WithMany(p => p.InverseParentModel).HasForeignKey(d => d.ParentModelId);
         });
@@ -158,8 +161,6 @@ public partial class AppDbContext : DbContext
             entity.HasIndex(e => e.BrandId, "IX_Products_BrandId");
 
             entity.HasIndex(e => e.CategoryId, "IX_Products_CategoryId");
-
-            entity.HasIndex(e => e.ModelId, "IX_Products_ModelId");
 
             entity.HasIndex(e => e.SubmitOperatorId, "IX_Products_SubmitOperatorId");
 
@@ -173,8 +174,6 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.Model).WithMany(p => p.Products).HasForeignKey(d => d.ModelId);
 
             entity.HasOne(d => d.SubmitOperator).WithMany(p => p.Products)
                 .HasForeignKey(d => d.SubmitOperatorId)

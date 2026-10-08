@@ -1,10 +1,17 @@
 <Solution>
   <Folder Name="/Src/" />
-  <Folder Name="/Src/01-InfraStructure/">
-    <Project Path="MainShop/src/App.Infarstructure.DataBase.SqlServer/App.Infarstructure.DataBase.SqlServer.csproj" />
+  <Folder Name="/Src/01-Domain/" />
+  <Folder Name="/Src/01-Domain/Core/">
+    <Project Path="D:/Learning/Maktab/.Net/Elnaz/exercise/Project/MainShop/App.Domain.Core/App.Domain.Core.csproj" Id="441aa4a9-d6d0-4e9f-b0ce-03842c1aaf6c" />
   </Folder>
-  <Folder Name="/Src/02-EndPoint/">
-    <Project Path="MainShop/src/App.EndPoin.Mvc.AdminUI/App.EndPoin.Mvc.AdminUI.csproj" />
-    <Project Path="MainShop/src/App.EndPoin.Mvc.ShopUI/App.EndPoin.Mvc.ShopUI.csproj" />
+  <Folder Name="/Src/01-Domain/Services/">
+    <Project Path="App.Domai.AppServices/App.Domain.AppServices.csproj" Id="26739131-429b-4dc5-ad85-618aefb24871" />
+    <Project Path="App.Domai.Services/App.Domain.Services.csproj" Id="a2f9dc83-cf0a-41fa-a0d7-387c924c3bf3" />
+  </Folder>
+  <Folder Name="/Src/02-InfraStructure/">
+    <Project Path="D:/Learning/Maktab/.Net/Elnaz/exercise/Project/MainShop/MainShop/src/App.Infarstructure.DataBase.SqlServer/App.Infarstructure.DataBase.SqlServer.csproj" />
+  </Folder>
+  <Folder Name="/Src/03-EndPoint/">
+    <Project Path="D:/Learning/Maktab/.Net/Elnaz/exercise/Project/MainShop/MainShop/src/App.EndPoin.Mvc.ShopUI/App.EndPoint.Mvc.ShopUI.csproj" />
   </Folder>
 </Solution>

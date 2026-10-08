@@ -1,0 +1,57 @@
+﻿@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Brand
+@model BrandOutPutViewModel
+
+@{
+    ViewData["Title"] = "جزییات برند";
+
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2> جزییات برند @Model.Name</h2>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">شناسه</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">تاریخ ایجاد</th>
+                        <th scope="col">وضعیت برند</th>
+                        <th scope="col">ترتیب نمایش</th>
+                    </tr>
+                </thead>
+               
+                <tbody>
+
+                    <tr>
+                        <td>@Model.Id</td>
+                        <td>@Model.Name</td>
+                        <td>@Model.CreationDate</td>
+                        <td>
+                            @if (Model.IsDeleted)
+                            {
+                                <span>فعال</span>
+                            }
+                            else
+                            {
+                                <span>غیرفعال</span>
+                            }
+                        </td>
+                        <td>@Model.DisplayOrder</td>
+                    </tr>
+                </tbody>
+              
+            </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <a asp-area="Admin" asp-controller="Brand" asp-action="Index" class="btn btn-primary  "> بازگشت </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

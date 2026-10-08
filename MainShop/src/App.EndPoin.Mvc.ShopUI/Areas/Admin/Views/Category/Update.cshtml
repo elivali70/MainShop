@@ -1,0 +1,53 @@
+﻿
+@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Category
+@model CategoryOutPutViewModel
+
+<h2 class="mb-3 text-center text-bg-success p-3 ">
+    ویرایش دسته یندی محصولات @Model.Name
+</h2>
+<form asp-area="Admin" asp-controller="Category" asp-action="Update" method="post">
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Name">
+        </label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="DisplayOrder">
+            دسته بندی اصلی 
+        </label>
+        <select class="form-control"
+                asp-for="ParentCategoryId"
+        >
+
+            <option value="">-- بدون دسته‌بندی اصلی --</option>
+            @foreach(var item in Model.ParentCategories)
+                    {
+                <option value="@item.Id">
+                    @item.Name
+                </option>
+                    }
+
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="DisplayOrder">
+            ترتیب نمایش
+        </label>
+        <input type="text" class="form-control" asp-for="DisplayOrder" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            وضعیت
+        </label>
+        <select class="form-control" asp-for="IsActive">
+            <option value="true">فعال</option>
+            <option value="false">غیرفعال</option>
+        </select>
+
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success ">ذخیره</button>
+        <button type="button" class="btn btn-primary " asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fas fa-arrow-right"></i>بازگشت</button>
+    </div>
+</form>

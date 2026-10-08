@@ -1,8 +1,8 @@
-using App.EndPoin.Mvc.ShopUI.Models;
+using App.EndPoint.Mvc.ShopUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace App.EndPoin.Mvc.ShopUI.Controllers
+namespace App.EndPoint.Mvc.ShopUI.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,0 +1,29 @@
+﻿@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel;
+@model BrandInPutViewModel
+
+<h2 class="mb-3 text-center text-bg-success p-3 ">
+   اضافه کردن برند جدید 
+</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form  asp-area="Admin" asp-controller="Brand" asp-action="Create" method="post">
+   
+    <div class="mb-3">
+        <label class="form-label" asp-for="Name"> </label>
+        <input type="text" class="form-control"  asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="ConfirmName"> </label>
+        <input type="text" class="form-control" asp-for="ConfirmName" />
+        <span asp-validation-for="ConfirmName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="DisplayOrder"> </label>
+        <input type="text" class="form-control" asp-for="DisplayOrder" />
+        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        <button type="submit" class="btn btn-success " >ذخیره</button>
+      
+
+        <button type="button" class="btn btn-primary " asp-area="Admin" asp-controller="Brand" asp-action="Index"><i class="fas fa-arrow-right"></i>بازگشت</button>
+    </div>
+</form>

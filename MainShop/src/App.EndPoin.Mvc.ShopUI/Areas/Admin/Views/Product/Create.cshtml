@@ -1,0 +1,94 @@
+﻿@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Brand
+@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Product
+@model ProductInPutViewModel
+
+<h2 class="mb-3 text-center text-bg-success p-3 ">
+    اضافه کردن محصول جدید
+</h2>
+<form asp-validation-summary="All" asp-area="Admin" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Name">  </label>
+        <input type="text" class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="CategoryName">  </label>
+        <input type="text" class="form-control" asp-for="CategoryName" />
+        <span asp-validation-for="CategoryName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="BrandId">  </label>
+      
+        <select asp-for ="BrandId">
+            @foreach (BrandOutPutViewModel item in ViewBag.brandOutPut)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Weight">  </label>
+        <input type="number" class="form-control" asp-for="Weight" />
+        <span asp-validation-for="Weight" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Discription">  </label>
+        <input type="text" class="form-control" asp-for="Discription" />
+        <span asp-validation-for="Discription" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Price">  </label>
+        <input type="number" class="form-control" asp-for="Price"> </input>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Count">  </label>
+        <input type="number" class="form-control" asp-for="Count"> </input>
+        <span asp-validation-for="Count" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-Select" asp-for="Colours" multiple>
+            <option value="Yellow">زرد</option>
+            <option value="Green">سبز</option>
+            <option value="Red">فرمز</option>
+            <option value="Blue">آبی</option>
+            <option value="Grey">خاکستری</option>
+            <option value="Black">مشکی</option>
+            <option value="White">سفید</option>
+        </select>
+    </div>
+    <div class="form-check mb-3">
+        <label class="form-label" asp-for="IsOriginal"> </label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="IsOriginal" value="true" />
+            <label class="form-check-label">
+                کالای اصل
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" asp-for="IsOriginal" value="false" />
+            <label class="form-check-label">
+                کالای تقلبی
+            </label>
+        </div>
+        <div>
+            <span asp-validation-for="IsOriginal" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">تصاویر و فیلم محصول</label>
+        <input type="file" class="form-control" asp-for="Files" multiple accept="image/*,video/*" />
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success " value="ذخیره" />
+        <a class="btn btn-primary "  asp-Area="Admin" asp-controller="Product" asp-action="Index"><i class="fas fa-arrow-right"></i>بازگشت</a>
+    </div>
+</form>
+
+
+

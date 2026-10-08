@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseData\Contracts\AppServices\" />
+    <Folder Include="Category\Enums\" />
+    <Folder Include="Permision\Contracts\AppServices\" />
+    <Folder Include="Permision\Entities\" />
+    <Folder Include="Brand\Enums\" />
+    <Folder Include="Product\Enums\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Product\Dtos\ProductFileDto.cs" />
+  </ItemGroup>
+
+</Project>

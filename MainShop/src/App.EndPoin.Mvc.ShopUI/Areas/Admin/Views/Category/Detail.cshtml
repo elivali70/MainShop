@@ -1,0 +1,56 @@
+﻿@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Category
+@model CategoryOutPutViewModel
+<h2 class="mb-3 text-center text-bg-success p-3 ">
+   مشاهده جزییات دسته بندی با شناسه @Model.Id
+</h2>
+<form>
+    <div class="mb-3">
+        <label class="form-check-label" for="categoryId">
+            شناسه دسته بندی
+        </label>
+        <input type="text" class="form-control" id="categoryId" value="@Model.Id" readonly="readonly" />
+    </div>
+    <div class="mb-3">
+        <label class="form-check-label" for="categoryName">
+            نام
+        </label>
+        <input type="text" class="form-control" id="categoryName" value="@Model.Name" readonly="readonly" />
+    </div>
+    <div class="mb-3">
+        <label class="form-check-label" for="IsActive">
+           وضعیت
+        </label>
+        @if (Model.IsActive)
+            {
+
+            <input type="text" class="form-control" id="IsActive" value="فعال" readonly="readonly" />
+            }
+            else
+            {
+            <input type="text" class="form-control" id="IsActive" value="غیر فعال" readonly="readonly" />
+            }
+
+    </div>
+    <div class="mb-3">
+        <label class="form-check-label" for="ParentCategory">
+           دسته یندی اصلی
+        </label>
+        <input type="text" class="form-control" id="ParentCategoryId" value="@Model.ParentCategoryId" readonly="readonly" />
+    </div>
+    <div class="mb-3">
+        <label class="form-check-label" for="DisplayOrder">
+           ترتیب نمایش
+        </label>
+        <input type="number" class="form-control" id="DisplayOrder" value="@Model.DisplayOrder" readonly="readonly" />
+    </div>
+  
+    <div class="mb-3">
+
+        <a class="btn btn-primary" asp-controller="Category" asp-action="Index"><i class="fas fa-arrow-right"></i>بازگشت</a>
+    </div>
+</form>
+
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Category
+@model CategoryInPutViewModel
+<h2 class="mb-3 text-center text-bg-success p-3 ">
+   اضافه کردن دسته بندی 
+</h2>
+<form asp-validation-summary="All" asp-area="Admin" asp-controller="Category" asp-action="Create" method="post">
+   
+    <div class="mb-3">
+        <label class="form-label" fasp-for="Name">  </label>
+        <input type="text" class="form-control"  asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+   
+    <div class="mb-3">
+        <label class="form-label" asp-for="ParentCategoryId">
+            دسته‌بندی اصلی
+        </label>
+
+
+        <option value="">-- بدون دسته‌بندی اصلی --</option>
+        @foreach (var item in Model.ParentCategories)
+        {
+            <option value="@item.Id">
+                @item.Name
+            </option>
+        }
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="DisplayOrder">
+            ترتیب نمایش
+        </label>
+        <input type="number" class="form-control" asp-for="DisplayOrder" />
+        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success " value="ذخیره" />
+
+        <a class="btn btn-primary "  asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fas fa-arrow-right"></i>بازگشت</a>
+    </div>
+</form>
+
+
+
