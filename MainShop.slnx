@@ -12,6 +12,7 @@
     <Project Path="D:/Learning/Maktab/.Net/Elnaz/exercise/Project/MainShop/MainShop/src/App.Infarstructure.DataBase.SqlServer/App.Infarstructure.DataBase.SqlServer.csproj" />
   </Folder>
   <Folder Name="/Src/03-EndPoint/">
+    <Project Path="App.EndPoint.API/App.EndPoint.API.csproj" Id="a4bd758f-f08b-463c-95f2-06f436d37724" />
     <Project Path="D:/Learning/Maktab/.Net/Elnaz/exercise/Project/MainShop/MainShop/src/App.EndPoin.Mvc.ShopUI/App.EndPoint.Mvc.ShopUI.csproj" />
   </Folder>
 </Solution>

@@ -31,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MainShop-V02\MainShop\App.Domai.AppServices\App.Domain.AppServices.csproj" />
+    <ProjectReference Include="..\..\..\..\MainShop-V02\MainShop\App.Domai.Services\App.Domain.Services.csproj" />
     <ProjectReference Include="..\..\..\App.Domai.AppServices\App.Domain.AppServices.csproj" />
     <ProjectReference Include="..\..\..\App.Domai.Services\App.Domain.Services.csproj" />
     <ProjectReference Include="..\..\..\App.Domain.Core\App.Domain.Core.csproj" />

@@ -4,7 +4,6 @@ using App.Domain.AppServices.Product;
 using App.Domain.Core.BaseData.Contracts.Repositories;
 using App.Domain.Core.BaseData.Contracts.Services;
 using App.Domain.Core.Brand.Contracts.AppServices;
-using App.Domain.Core.Brand.Contracts.AppServices;
 using App.Domain.Core.Brand.Contracts.Repositories;
 using App.Domain.Core.Brand.Contracts.Services;
 using App.Domain.Core.Category.Contracts.AppServices;
@@ -23,9 +22,7 @@ using App.Domain.Services.Product;
 using App.EndPoint.Mvc.ShopUI.Areas.Admin.Data.Contract.Service;
 using App.Infarstructure.DataBase.SqlServer.Data;
 using App.Infarstructure.DataBase.SqlServer.Repository;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using System;
 {
     var builder = WebApplication.CreateBuilder(args);
 
