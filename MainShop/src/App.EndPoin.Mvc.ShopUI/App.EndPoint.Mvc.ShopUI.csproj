@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -17,22 +17,29 @@
   </ItemGroup>
 	
 	  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.11">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.13" />
+
+		  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.13" />
+
+		  <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.12" />
+
+		  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.13">
+			  <PrivateAssets>all</PrivateAssets>
+			  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  </PackageReference>
+
+		  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
+
+		  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.13">
+			  <PrivateAssets>all</PrivateAssets>
+			  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  </PackageReference>
+
+		  <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\MainShop-V02\MainShop\App.Domai.AppServices\App.Domain.AppServices.csproj" />
-    <ProjectReference Include="..\..\..\..\MainShop-V02\MainShop\App.Domai.Services\App.Domain.Services.csproj" />
+
     <ProjectReference Include="..\..\..\App.Domai.AppServices\App.Domain.AppServices.csproj" />
     <ProjectReference Include="..\..\..\App.Domai.Services\App.Domain.Services.csproj" />
     <ProjectReference Include="..\..\..\App.Domain.Core\App.Domain.Core.csproj" />

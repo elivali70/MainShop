@@ -8,6 +8,8 @@ using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Brand;
 using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Category;
 using App.EndPoint.Mvc.ShopUI.Areas.Admin.Models.ViewModel.Product;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace App.EndPoint.Mvc.ShopUI.Areas.Admin.Controllers
 {
@@ -17,12 +19,14 @@ namespace App.EndPoint.Mvc.ShopUI.Areas.Admin.Controllers
         private readonly IProductAppService _productAppService;
         private readonly IFileStorageService _fileStorageService;
         private readonly IBrandAppService _brandAppService;
+        private readonly IConfiguration _configuration;
 
-        public ProductController(IProductAppService productAppService, IFileStorageService fileStorageService, IBrandAppService brandAppService)
+        public ProductController(IProductAppService productAppService, IFileStorageService fileStorageService, IBrandAppService brandAppService,IConfiguration configuration)
         {
             _productAppService = productAppService;
             _fileStorageService = fileStorageService;
             _brandAppService = brandAppService;
+            _configuration = configuration;
         }
         public async Task<IActionResult> Index()
         {
@@ -44,7 +48,7 @@ namespace App.EndPoint.Mvc.ShopUI.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ProductInPutViewModel product)
+        public async Task<IActionResult> Create(ProductInPutViewModel product,CancellationToken cancellationToken)
         {
 
             if (ModelState.IsValid)
@@ -72,14 +76,27 @@ namespace App.EndPoint.Mvc.ShopUI.Areas.Admin.Controllers
                     Price = product.Price,
                     Weight = product.Weight,
                 };
+
+
                 var productId = await _productAppService.Set(productInput);
                 await _productAppService.SetProductColour(productId, product.Colours);
                 //change and take them to appservice
                 var path = await _fileStorageService.CreateProductFolder(productId);
 
-                var productPath =await _fileStorageService.SaveFile(files, path);
+                var productPath = await _fileStorageService.SaveFile(files, path);
+               //  await _productAppService.Set(productInput);
 
                 //
+
+                using var client=new HttpClient();
+                var jsonContent=JsonConvert.SerializeObject(productInput);
+                HttpContent httpcontent = new StringContent(jsonContent,Encoding.UTF8,"application/json");
+                client.DefaultRequestHeaders.Add("ApiKey", _configuration.GetSection("ApiKey").Value);
+                var httpResponse = await client.PostAsync("http://localhost:5136/api/Product/SetProduct", httpcontent,cancellationToken);
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    throw new Exception("خطایی در دریافت اطلاعات رخ داده است");
+                }
                 return RedirectToAction("Index");
             }
             return View(product);

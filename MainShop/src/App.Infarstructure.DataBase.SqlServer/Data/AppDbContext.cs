@@ -4,14 +4,13 @@ using App.Domain.Core.Product.Entities;
 using App.Domain.Core.Brand.Entities;
 using Microsoft.EntityFrameworkCore;
 using App.Domain.Core.Category.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace App.Infarstructure.DataBase.SqlServer.Data;
 
-public partial class AppDbContext : DbContext
+public partial class AppDbContext : IdentityDbContext
 {
-    public AppDbContext()
-    {
-    }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
@@ -64,6 +63,7 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.Property(e => e.Name).HasMaxLength(150);
@@ -138,7 +138,10 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Model>(entity =>
         {
-            entity.HasIndex(e => e.BrandId, "IX_Models_BrandId");
+            entity.HasOne(d => d.Brand)
+        .WithMany(p => p.ModelBrands)
+        .HasForeignKey(d => d.BrandId)
+        .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasIndex(e => e.ProductId, "IX_Products_ModelId");
 

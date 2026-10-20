@@ -23,6 +23,8 @@ using App.EndPoint.Mvc.ShopUI.Areas.Admin.Data.Contract.Service;
 using App.Infarstructure.DataBase.SqlServer.Data;
 using App.Infarstructure.DataBase.SqlServer.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 {
     var builder = WebApplication.CreateBuilder(args);
 
