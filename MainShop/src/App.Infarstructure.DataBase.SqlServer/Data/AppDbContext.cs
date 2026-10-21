@@ -5,10 +5,11 @@ using App.Domain.Core.Brand.Entities;
 using Microsoft.EntityFrameworkCore;
 using App.Domain.Core.Category.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Infarstructure.DataBase.SqlServer.Data;
 
-public partial class AppDbContext : IdentityDbContext
+public partial class AppDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>,int>
 {
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

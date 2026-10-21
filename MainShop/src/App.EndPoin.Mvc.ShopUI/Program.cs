@@ -24,16 +24,38 @@ using App.Infarstructure.DataBase.SqlServer.Data;
 using App.Infarstructure.DataBase.SqlServer.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.ConfigureApplicationCookie(options =>
+    {
+        options.LoginPath = "/Account/LogIn";
+        options.LogoutPath = "/Account/Logout";
+
+    });
     // Add services to the container.
-    builder.Services.AddControllersWithViews();
+    builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(
             "Server=.;Database=ShopProjectDB;Trusted_Connection=True;TrustServerCertificate=True;"
         ));
+    builder.Services.AddIdentity<IdentityUser<int>,IdentityRole<int>>(
+        options =>
+        {
+            options.SignIn.RequireConfirmedAccount = false;
+            options.SignIn.RequireConfirmedPhoneNumber = false;
+            options.SignIn.RequireConfirmedEmail = false;
+
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequiredUniqueChars = 2;
+
+        }).AddEntityFrameworkStores<AppDbContext>();
     builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
     #region BaseData
 
@@ -95,6 +117,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     app.UseHttpsRedirection();
     app.UseRouting();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapStaticAssets();
